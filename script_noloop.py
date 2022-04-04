@@ -35,6 +35,11 @@ FIFTH_A_APIKEY = os.environ.get('FIFTH_A_APIKEY',"")
 FIFTH_B_APPNAME = os.environ.get('FIFTH_B_APPNAME',"")
 FIFTH_B_APIKEY = os.environ.get('FIFTH_B_APIKEY',"")
 FIFTH_PROCESSTYPE = os.environ.get('FIFTH_PROCESSTYPE',"")
+SIXTH_A_APPNAME = os.environ.get('SIXTH_A_APPNAME',"")
+SIXTH_A_APIKEY = os.environ.get('SIXTH_A_APIKEY',"")
+SIXTH_B_APPNAME = os.environ.get('SIXTH_B_APPNAME',"")
+SIXTH_B_APIKEY = os.environ.get('SIXTH_B_APIKEY',"")
+SIXTH_PROCESSTYPE = os.environ.get('SIXTH_PROCESSTYPE',"")
 
 # The main script
 today = datetime.now()
@@ -179,5 +184,33 @@ if(len(FIFTH_PROCESSTYPE) != 0 and len(FIFTH_A_APIKEY) != 0 and len(FIFTH_A_APPN
     print("[#5] The fifth app in the first acc has been scaled up.")
     print("[#5] Your fifth app has been shifted to the first acc.")
     
+# sixth pair of apps
+print("Checking the conditions for the sixth app..")
+if(len(SIXTH_PROCESSTYPE) != 0 and len(SIXTH_A_APIKEY) != 0 and len(SIXTH_A_APPNAME) != 0 and len(SIXTH_B_APIKEY) != 0 and len(SIXTH_B_APPNAME) != 0):
+  if(today.day == 15):
+    print("[#5] Changing the dyno to the second acc..")
+    heroku_conn = heroku3.from_key(SIXTH_A_APIKEY)
+    app = heroku_conn.app(SIXTH_A_APPNAME)
+    app.process_formation()[SIXTH_PROCESSTYPE].scale(0)
+    print("[#5] The sixth app in the first acc has been scaled down.")
+    time.sleep(5)
+    heroku_conn = heroku3.from_key(SIXTH_B_APIKEY)
+    app = heroku_conn.app(SIXTH_B_APPNAME)
+    app.process_formation()[SIXTH_PROCESSTYPE].scale(1)
+    print("[#5] The sixth app in the second acc has been scaled up.")
+    print("[#5] Your sixth app has been shifted to the second acc.")
+  elif(today.day == 1):
+    print("[#5] Changing the dyno to the first acc..")
+    heroku_conn = heroku3.from_key(SIXTH_B_APIKEY)
+    app = heroku_conn.app(SIXTH_B_APPNAME)
+    app.process_formation()[SIXTH_PROCESSTYPE].scale(0)
+    print("[#5] The sixth app in the second acc has been scaled down.")
+    time.sleep(5)
+    heroku_conn = heroku3.from_key(SIXTH_A_APIKEY)
+    app = heroku_conn.app(SIXTH_A_APPNAME)
+    app.process_formation()SIXTH_PROCESSTYPE].scale(1)
+    print("[#5] The sixth app in the first acc has been scaled up.")
+    print("[#5] Your sixth app has been shifted to the first acc.")
+
 # Ending the current process
 print("The script has been executed.")
