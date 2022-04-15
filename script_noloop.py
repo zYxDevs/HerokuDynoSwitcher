@@ -208,7 +208,7 @@ if(len(SIXTH_PROCESSTYPE) != 0 and len(SIXTH_A_APIKEY) != 0 and len(SIXTH_A_APPN
     time.sleep(5)
     heroku_conn = heroku3.from_key(SIXTH_A_APIKEY)
     app = heroku_conn.app(SIXTH_A_APPNAME)
-    app.process_formation()SIXTH_PROCESSTYPE].scale(1)
+    app.process_formation()[SIXTH_PROCESSTYPE].scale(1)
     print("[#5] The sixth app in the first acc has been scaled up.")
     print("[#5] Your sixth app has been shifted to the first acc.")
 
