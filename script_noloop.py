@@ -212,5 +212,33 @@ if(len(SIXTH_PROCESSTYPE) != 0 and len(SIXTH_A_APIKEY) != 0 and len(SIXTH_A_APPN
     print("[#6] The sixth app in the first acc has been scaled up.")
     print("[#6] Your sixth app has been shifted to the first acc.")
 
+# seventh pair of apps
+print("Checking the conditions for the seventh app..")
+if(len(SEVENTH_PROCESSTYPE) != 0 and len(SEVENTH_A_APIKEY) != 0 and len(SEVENTH_A_APPNAME) != 0 and len(SEVENTH_B_APIKEY) != 0 and len(SEVENTH_B_APPNAME) != 0):
+  if(today.day >= 15):
+    print("[#7] Changing the dyno to the second acc..")
+    heroku_conn = heroku3.from_key(SEVENTH_A_APIKEY)
+    app = heroku_conn.app(SEVENTH_A_APPNAME)
+    app.process_formation()[SEVENTH_PROCESSTYPE].scale(0)
+    print("[#7] The seventh app in the first acc has been scaled down.")
+    time.sleep(5)
+    heroku_conn = heroku3.from_key(SEVENTH_B_APIKEY)
+    app = heroku_conn.app(SEVENTH_B_APPNAME)
+    app.process_formation()[SEVENTH_PROCESSTYPE].scale(1)
+    print("[#7] The seventh app in the second acc has been scaled up.")
+    print("[#7] Your seventh app has been shifted to the second acc.")
+  elif(today.day >= 1):
+    print("[#7] Changing the dyno to the first acc..")
+    heroku_conn = heroku3.from_key(SEVENTH_B_APIKEY)
+    app = heroku_conn.app(SEVENTH_B_APPNAME)
+    app.process_formation()[SEVENTH_PROCESSTYPE].scale(0)
+    print("[#7] The seventh app in the second acc has been scaled down.")
+    time.sleep(5)
+    heroku_conn = heroku3.from_key(SEVENTH_A_APIKEY)
+    app = heroku_conn.app(SEVENTH_A_APPNAME)
+    app.process_formation()[SEVENTH_PROCESSTYPE].scale(1)
+    print("[#7] The seventh app in the first acc has been scaled up.")
+    print("[#7] Your seventh app has been shifted to the first acc.")
+
 # Ending the current process
 print("The script has been executed.")
