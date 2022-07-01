@@ -40,6 +40,11 @@ SIXTH_A_APIKEY = os.environ.get('SIXTH_A_APIKEY',"")
 SIXTH_B_APPNAME = os.environ.get('SIXTH_B_APPNAME',"")
 SIXTH_B_APIKEY = os.environ.get('SIXTH_B_APIKEY',"")
 SIXTH_PROCESSTYPE = os.environ.get('SIXTH_PROCESSTYPE',"")
+SEVENTH_A_APPNAME = os.environ.get('SEVENTH_A_APPNAME',"")
+SEVENTH_A_APIKEY = os.environ.get('SEVENTH_A_APIKEY',"")
+SEVENTH_B_APPNAME = os.environ.get('SEVENTH_B_APPNAME',"")
+SEVENTH_B_APIKEY = os.environ.get('SEVENTH_B_APIKEY',"")
+SEVENTH_PROCESSTYPE = os.environ.get('SEVENTH_PROCESSTYPE',"")
 
 # The main script
 today = datetime.now()
